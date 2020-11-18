@@ -6,11 +6,11 @@ public:
 	int height;
 
 	Grid(int sizeX, int sizeY);
-	Grid(int sizeX, int sizeY, char filler);
-	char& getCell(int x, int y);
+	Grid(int sizeX, int sizeY, wchar_t filler);
+	wchar_t& getCell(int x, int y);
+	void fill(wchar_t filler);
 
 private:
-	char* grid;
-	void fill(char filler);
+	wchar_t* grid;
 };
 

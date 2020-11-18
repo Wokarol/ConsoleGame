@@ -1,37 +1,44 @@
 #include <iostream>
 #include <stdlib.h>
+#include <io.h>
+#include <fcntl.h>
 
-#include "Rendering.h"
+#include "Renderer.h"
 
-using namespace rendering;
+Renderer::Renderer(int width, int height) : frameBuffer(width, height) {}
 
-void rendering::initializeFrameBuffer(int width, int height)
+void Renderer::clearFrame(wchar_t background)
 {
-	frameBuffer[width][height];
-	rendering::width = width;
-	rendering::height = height;
+	frameBuffer.fill(background);
 }
 
-void rendering::clearFrame(char background)
+void Renderer::draw(Grid& obj, int posX, int posY)
 {
-	for (int x = 0; x < width; x++)
+	for (int x = 0; x < obj.width; x++)
 	{
-		for (int y = 0; y < height; y++)
+		for (int y = 0; y < obj.height; y++)
 		{
-			frameBuffer[x][y] = background;
+			if (obj.getCell(x, y) != 0)
+				frameBuffer.getCell(x + posX, y + posY) = obj.getCell(x, y);
 		}
 	}
 }
 
-void rendering::outputToConsole()
+void Renderer::clearConsole()
 {
-	for (int y = 0; y < height; y++)
+	system("cls");
+}
+
+void Renderer::outputToConsole()
+{
+	for (int y = 0; y < frameBuffer.height; y++)
 	{
-		for (int x = 0; x < width; x++)
+		for (int x = 0; x < frameBuffer.width; x++)
 		{
-			std::cout << frameBuffer[x][y];
+			_setmode(_fileno(stdout), _O_U16TEXT);
+			std::wcout << frameBuffer.getCell(x, y);
 		}
 
-		std::cout << std::endl;
+		std::wcout << std::endl;
 	}
 }

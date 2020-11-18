@@ -38,7 +38,7 @@
     <ClInclude Include="src\World\Structures\Building.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Rendering\Rendering.h">
+    <ClInclude Include="src\Rendering\Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -4,17 +4,17 @@
 
 Grid::Grid(int sizeX, int sizeY)
 {
-	grid = new char[sizeX * sizeY];
+	grid = new wchar_t[sizeX * sizeY];
 	width = sizeX;
 	height = sizeY;
 }
 
-Grid::Grid(int sizeX, int sizeY, char filler) : Grid(sizeX, sizeY)
+Grid::Grid(int sizeX, int sizeY, wchar_t filler) : Grid(sizeX, sizeY)
 {
 	fill(filler);
 }
 
-char& Grid::getCell(int x, int y)
+wchar_t& Grid::getCell(int x, int y)
 {
 	if (x < 0 || x >= width)
 		throw std::out_of_range("Yeet?");
@@ -25,7 +25,7 @@ char& Grid::getCell(int x, int y)
 }
 
 
-void Grid::fill(char filler)
+void Grid::fill(wchar_t filler)
 {
 	for (int y = 0; y < height; y++)
 	{

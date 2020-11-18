@@ -4,15 +4,22 @@
 #include <stdlib.h>
 
 #include "src/World/World.h"
-#include "src/Rendering/Rendering.h"
+#include "src/Rendering/Renderer.h"
 
 int main()
 {
-	rendering::initializeFrameBuffer(10, 10);
+	Renderer renderer(40, 20);
 
-	//Grid house = (Grid)Building(5, 5);
+	Grid house = (Grid)Building(8, 5);
+	Grid house2 = (Grid)Building(6, 4);
+	Grid house3 = (Grid)Building(6, 3);
 
-	rendering::clearFrame('.');
-	rendering::clearConsole();
-	rendering::outputToConsole();
+	renderer.clearFrame(' ');
+
+	renderer.draw(house, 1, 1);
+	renderer.draw(house2, 9, 4);
+	renderer.draw(house3, 13, 1);
+
+	renderer.clearConsole();
+	renderer.outputToConsole();
 }

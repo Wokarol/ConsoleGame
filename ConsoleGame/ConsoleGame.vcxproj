@@ -145,7 +145,7 @@
     <ClCompile Include="src\World\Grid.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Rendering\Rendering.h" />
+    <ClInclude Include="src\Rendering\Renderer.h" />
     <ClInclude Include="src\World\Structures\Building.h" />
     <ClInclude Include="src\World\Grid.h" />
     <ClInclude Include="src\World\World.h" />
