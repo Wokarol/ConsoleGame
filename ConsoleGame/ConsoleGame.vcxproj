@@ -142,12 +142,14 @@
     <ClCompile Include="src\World\Structures\Building.cpp" />
     <ClCompile Include="ConsoleGame.cpp" />
     <ClCompile Include="src\Rendering\Renderer.cpp" />
-    <ClCompile Include="src\World\Grid.cpp" />
+    <ClCompile Include="src\Rendering\Grid.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Rendering\Renderable.h" />
     <ClInclude Include="src\Rendering\Renderer.h" />
+    <ClInclude Include="src\Rendering\Rendering.h" />
     <ClInclude Include="src\World\Structures\Building.h" />
-    <ClInclude Include="src\World\Grid.h" />
+    <ClInclude Include="src\Rendering\Grid.h" />
     <ClInclude Include="src\World\World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

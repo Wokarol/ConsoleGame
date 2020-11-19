@@ -1,7 +1,7 @@
 ﻿#include <conio.h>
 
 #include "src/World/World.h"
-#include "src/Rendering/Renderer.h"
+#include "src/Rendering/Rendering.h"
 
 
 int main()

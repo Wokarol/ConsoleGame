@@ -4,7 +4,8 @@
 
 Grid::Grid(int sizeX, int sizeY)
 {
-	grid = new wchar_t[sizeX * sizeY];
+	int size = sizeX * sizeY;
+	grid = new wchar_t[size];
 	width = sizeX;
 	height = sizeY;
 }
@@ -34,4 +35,19 @@ void Grid::fill(wchar_t filler)
 			getCell(x, y) = filler;
 		}
 	}
+}
+
+int Grid::getWidth()
+{
+	return width;
+}
+
+int Grid::getHeight()
+{
+	return height;
+}
+
+wchar_t Grid::getChar(int x, int y)
+{
+	return getCell(x, y);
 }

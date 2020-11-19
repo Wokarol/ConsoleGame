@@ -2,7 +2,8 @@
 #include <iostream>
 #include <windows.h>
 
-#include "../World/Grid.h"
+#include "Renderable.h"
+#include "Grid.h"
 
 class Renderer
 {
@@ -14,6 +15,6 @@ private:
 public:
 	Renderer(int width, int height);
 	void clearFrame(wchar_t background);
-	void draw(Grid& grid, int x, int y);
+	void draw(Renderable& grid, int x, int y);
 	void outputToConsole();
 };

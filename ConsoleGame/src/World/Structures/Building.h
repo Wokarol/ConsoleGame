@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Grid.h"
+#include "../../Rendering/Rendering.h"
 
 struct Building
 {

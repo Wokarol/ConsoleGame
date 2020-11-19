@@ -10,7 +10,7 @@ Renderer::Renderer(int width, int height) : frameBuffer(width, height)
 {
 	system("cls");
 	out = GetStdHandle(STD_OUTPUT_HANDLE);
-	_setmode(_fileno(stdout), _O_U16TEXT);
+	auto _ = _setmode(_fileno(stdout), _O_U16TEXT);
 }
 
 void Renderer::clearFrame(wchar_t background)
@@ -18,25 +18,26 @@ void Renderer::clearFrame(wchar_t background)
 	frameBuffer.fill(background);
 }
 
-void Renderer::draw(Grid& obj, int posX, int posY)
+void Renderer::draw(Renderable& obj, int posX, int posY)
 {
 	int minX = posX;
 	int minY = posY;
 
-	int distToEdgeX = frameBuffer.width - posX;
-	int distToEdgeY = frameBuffer.height - posY;
+	int distToEdgeX = frameBuffer.getWidth() - posX;
+	int distToEdgeY = frameBuffer.getHeight() - posY;
 
 	int startX = max(-minX, 0);
 	int startY = max(-minY, 0);
-	int endX = min(distToEdgeX, obj.width);
-	int endY = min(distToEdgeY, obj.height);
+	int endX = min(distToEdgeX, obj.getWidth());
+	int endY = min(distToEdgeY, obj.getHeight());
 
 	for (int x = startX; x < endX; x++)
 	{
 		for (int y = startY; y < endY; y++)
 		{
-			if (obj.getCell(x, y) != 0)
-				frameBuffer.getCell(x + posX, y + posY) = obj.getCell(x, y);
+			wchar_t c = obj.getChar(x, y);
+			if (c != 0)
+				frameBuffer.getCell(x + posX, y + posY) = c;
 		}
 	}
 }
@@ -52,16 +53,16 @@ void Renderer::outputToConsole()
 
 	std::wcout << std::endl;
 	std::wcout << L"  \u2554";
-	for (int i = 0; i < frameBuffer.width; i++)
+	for (int i = 0; i < frameBuffer.getWidth(); i++)
 	{
 		std::wcout << L'\u2550';
 	}
 	std::wcout << L'\u2557' << std::endl;
 
-	for (int y = 0; y < frameBuffer.height; y++)
+	for (int y = 0; y < frameBuffer.getHeight(); y++)
 	{
 		std::wcout << L"  \u2551";
-		for (int x = 0; x < frameBuffer.width; x++)
+		for (int x = 0; x < frameBuffer.getWidth(); x++)
 		{
 			std::wcout << frameBuffer.getCell(x, y);
 		}
@@ -71,7 +72,7 @@ void Renderer::outputToConsole()
 	}
 
 	std::wcout << L"  \u255A";
-	for (int i = 0; i < frameBuffer.width; i++)
+	for (int i = 0; i < frameBuffer.getWidth(); i++)
 	{
 		std::wcout << L'\u2550';
 	}
