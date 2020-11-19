@@ -10,6 +10,7 @@ Renderer::Renderer(int width, int height) : frameBuffer(width, height)
 {
 	system("cls");
 	out = GetStdHandle(STD_OUTPUT_HANDLE);
+	_setmode(_fileno(stdout), _O_U16TEXT);
 }
 
 void Renderer::clearFrame(wchar_t background)
@@ -42,8 +43,6 @@ void Renderer::draw(Grid& obj, int posX, int posY)
 
 void Renderer::outputToConsole()
 {
-	_setmode(_fileno(stdout), _O_U16TEXT);
-
 	COORD coord = { 0, 0 };
 	SetConsoleCursorPosition(out, coord);
 
