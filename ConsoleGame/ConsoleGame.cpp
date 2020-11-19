@@ -6,7 +6,7 @@
 
 int main()
 {
-	Renderer renderer(10, 5);
+	Renderer renderer(80, 40);
 	Grid square = (Grid)Building(4, 2);
 
 	int posX = 0, posY = 0;
@@ -17,7 +17,6 @@ int main()
 
 		renderer.draw(square, posX, posY);
 
-		renderer.clearConsole();
 		renderer.outputToConsole();
 
 		char key = _getch();

@@ -2,10 +2,15 @@
 #include <stdlib.h>
 #include <io.h>
 #include <fcntl.h>
+#include <windows.h>
 
 #include "Renderer.h"
 
-Renderer::Renderer(int width, int height) : frameBuffer(width, height) {}
+Renderer::Renderer(int width, int height) : frameBuffer(width, height)
+{
+	system("cls");
+	out = GetStdHandle(STD_OUTPUT_HANDLE);
+}
 
 void Renderer::clearFrame(wchar_t background)
 {
@@ -20,10 +25,10 @@ void Renderer::draw(Grid& obj, int posX, int posY)
 	int distToEdgeX = frameBuffer.width - posX;
 	int distToEdgeY = frameBuffer.height - posY;
 
-	int startX = std::max(-minX, 0);
-	int startY = std::max(-minY, 0);
-	int endX = std::min(distToEdgeX, obj.width);
-	int endY = std::min(distToEdgeY, obj.height);
+	int startX = max(-minX, 0);
+	int startY = max(-minY, 0);
+	int endX = min(distToEdgeX, obj.width);
+	int endY = min(distToEdgeY, obj.height);
 
 	for (int x = startX; x < endX; x++)
 	{
@@ -35,14 +40,16 @@ void Renderer::draw(Grid& obj, int posX, int posY)
 	}
 }
 
-void Renderer::clearConsole()
-{
-	system("cls");
-}
-
 void Renderer::outputToConsole()
 {
 	_setmode(_fileno(stdout), _O_U16TEXT);
+
+	COORD coord = { 0, 0 };
+	SetConsoleCursorPosition(out, coord);
+
+	GetConsoleCursorInfo(out, &cursorInfo);
+	cursorInfo.bVisible = false; // set the cursor visibility
+	SetConsoleCursorInfo(out, &cursorInfo);
 
 	std::wcout << std::endl;
 	std::wcout << L"  \u2554";
