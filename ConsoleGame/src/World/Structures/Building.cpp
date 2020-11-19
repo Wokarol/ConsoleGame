@@ -7,36 +7,36 @@ Building::Building(int width, int height)
 	this->height = height;
 }
 
-Building::operator Grid()
+int Building::getWidth()
 {
-	Grid grid(width, height);
+	return width;
+}
 
-	for (int x = 1; x < width - 1; x++)
-	{
-		wchar_t c = L'\u2500';
-		grid.getCell(x, 0) = c;
-		grid.getCell(x, height - 1) = c;
-	}
+int Building::getHeight()
+{
+	return height;
+}
 
-	for (int y = 1; y < height - 1; y++)
-	{
-		wchar_t c = L'\u2502';
-		grid.getCell(0, y) = c;
-		grid.getCell(width - 1, y) = c;
-	}
+wchar_t Building::getChar(int x, int y)
+{
+	// Corners
+	if (x == 0 && y == 0)
+		return L'\u250C';
+	if (x == width - 1 && y == height - 1)
+		return L'\u2518';
+	if (x == 0 && y == height - 1)
+		return L'\u2514';
+	if (x == width - 1 && y == 0)
+		return L'\u2510';
 
-	grid.getCell(0, 0) = L'\u250C';
-	grid.getCell(width - 1, height - 1) = L'\u2518';
-	grid.getCell(0, height - 1) = L'\u2514';
-	grid.getCell(width - 1, 0) = L'\u2510';
+	// Left/Right
+	if ((x == 0 || x == width - 1) && (y >= 1 || x <= height - 1))
+		return L'\u2502';
 
-	for (int x = 1; x < grid.width - 1; x++)
-	{
-		for (int y = 1; y < grid.height - 1; y++)
-		{
-			grid.getCell(x, y) = 0;
-		}
-	}
+	// Left/Right
+	if ((y == 0 || y == height - 1) && (x >= 1 || x <= width - 1))
+		return L'\u2500';
 
-	return grid;
+	else 
+		return 0;
 }

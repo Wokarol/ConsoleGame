@@ -2,31 +2,34 @@
 
 #include "src/World/World.h"
 #include "src/Rendering/Rendering.h"
+#include "src/Actors/Actors.h"
 
 
 int main()
 {
-	Renderer renderer(80, 40);
-	Grid square = (Grid)Building(4, 2);
-
-	int posX = 0, posY = 0;
+	Renderer renderer(20, 10);
+	Building squareA = Building(4, 3);
+	Building squareB = Building(7, 2);
+	Player player = Player{};
 
 	while (true)
 	{
 		renderer.clearFrame(' ');
 
-		renderer.draw(square, posX, posY);
+		renderer.draw(squareA, 4, 6);
+		renderer.draw(squareB, 7, 2);
+		renderer.draw(player, player.x, player.y);
 
 		renderer.outputToConsole();
 
 		char key = _getch();
 		if (key == 'd')
-			posX += 1;
+			player.x += 1;
 		if (key == 'a')
-			posX -= 1;
+			player.x -= 1;
 		if (key == 'w')
-			posY -= 1;
+			player.y -= 1;
 		if (key == 's')
-			posY += 1;
+			player.y += 1;
 	}
 }

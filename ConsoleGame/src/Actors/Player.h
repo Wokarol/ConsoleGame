@@ -1,14 +1,10 @@
 #pragma once
+#include "../Rendering/Renderable.h"
 
-#include "../../Rendering/Renderable.h"
-
-class Building : public Renderable
+class Player : public Renderable
 {
 public:
-	int width;
-	int height;
-
-	Building(int width, int heigth);
+	int x, y;
 
 	// Inherited via Renderable
 	virtual int getWidth() override;

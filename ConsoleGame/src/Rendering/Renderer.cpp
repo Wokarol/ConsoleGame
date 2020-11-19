@@ -8,6 +8,7 @@
 
 Renderer::Renderer(int width, int height) : frameBuffer(width, height)
 {
+	SetConsoleTextAttribute(out, 0xFC);
 	system("cls");
 	out = GetStdHandle(STD_OUTPUT_HANDLE);
 	auto _ = _setmode(_fileno(stdout), _O_U16TEXT);

@@ -139,12 +139,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Actors\Player.cpp" />
     <ClCompile Include="src\World\Structures\Building.cpp" />
     <ClCompile Include="ConsoleGame.cpp" />
     <ClCompile Include="src\Rendering\Renderer.cpp" />
     <ClCompile Include="src\Rendering\Grid.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Actors\Player.h" />
+    <ClInclude Include="src\Actors\Actors.h" />
     <ClInclude Include="src\Rendering\Renderable.h" />
     <ClInclude Include="src\Rendering\Renderer.h" />
     <ClInclude Include="src\Rendering\Rendering.h" />
