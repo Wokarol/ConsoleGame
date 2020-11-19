@@ -1,20 +1,33 @@
-﻿#include "src/World/World.h"
+﻿#include <conio.h>
+
+#include "src/World/World.h"
 #include "src/Rendering/Renderer.h"
+
 
 int main()
 {
-	Renderer renderer(40, 20);
+	Renderer renderer(10, 5);
+	Grid square = (Grid)Building(4, 2);
 
-	Grid house = (Grid)Building(8, 5);
-	Grid house2 = (Grid)Building(6, 4);
-	Grid house3 = (Grid)Building(6, 3);
+	int posX = 0, posY = 0;
 
-	renderer.clearFrame(' ');
+	while (true)
+	{
+		renderer.clearFrame(' ');
 
-	renderer.draw(house, 1, 1);
-	renderer.draw(house2, 9, 4);
-	renderer.draw(house3, 13, 1);
+		renderer.draw(square, posX, posY);
 
-	renderer.clearConsole();
-	renderer.outputToConsole();
+		renderer.clearConsole();
+		renderer.outputToConsole();
+
+		char key = _getch();
+		if (key == 'd')
+			posX += 1;
+		if (key == 'a')
+			posX -= 1;
+		if (key == 'w')
+			posY -= 1;
+		if (key == 's')
+			posY += 1;
+	}
 }
