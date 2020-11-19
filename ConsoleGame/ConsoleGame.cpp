@@ -1,9 +1,4 @@
-﻿// ConsoleGame.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-#include <iostream>
-#include <stdlib.h>
-
-#include "src/World/World.h"
+﻿#include "src/World/World.h"
 #include "src/Rendering/Renderer.h"
 
 int main()
