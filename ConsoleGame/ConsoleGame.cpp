@@ -22,14 +22,6 @@ int main()
 
 		renderer.outputToConsole();
 
-		char key = _getch();
-		if (key == 'd')
-			player.x += 1;
-		if (key == 'a')
-			player.x -= 1;
-		if (key == 'w')
-			player.y -= 1;
-		if (key == 's')
-			player.y += 1;
+		player.handleInput();
 	}
 }

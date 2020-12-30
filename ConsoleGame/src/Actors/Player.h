@@ -10,5 +10,7 @@ public:
 	virtual int getWidth() override;
 	virtual int getHeight() override;
 	virtual wchar_t getChar(int x, int y) override;
+
+	void handleInput();
 };
 
